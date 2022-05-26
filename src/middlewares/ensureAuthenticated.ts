@@ -23,7 +23,7 @@ export async function ensureAuthenticated(request: Request, response: Response, 
        
        //funcao verify recebe o token e a (chave Token) criada em AuthenticateUserUseCase,
        //para validar
-        const { sub: user_id } = verify(token, "6934c1fd8d71388b58a1a368ddb29c59") as IPayload;
+        const { sub: user_id } = verify(token, "b4a9ad0d41433925b4320749fb22ddec") as IPayload;
        //sub recebe o id do usuario contido no token
         const usersRepository = new UsersRepository();
        
@@ -31,6 +31,10 @@ export async function ensureAuthenticated(request: Request, response: Response, 
 
         if(!user){
             throw new AppError("User does not exists", 401);
+        }
+
+        request.user = {
+            id: user_id
         }
        
        next();
