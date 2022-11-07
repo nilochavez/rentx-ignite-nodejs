@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface,  QueryRunner, Table} from "typeorm";
 
 export class CreateUSers1652149216519 implements MigrationInterface {
 
@@ -9,7 +9,8 @@ export class CreateUSers1652149216519 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid"
+                        type: "uuid",
+                        isPrimary: true
                     },
                     {
                         name: "name",
