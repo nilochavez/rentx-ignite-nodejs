@@ -84,7 +84,7 @@ class AuthenticateUserUseCase {
       },
       refresh_token
     };
-
+    
     return tokenReturn;
   }
 }

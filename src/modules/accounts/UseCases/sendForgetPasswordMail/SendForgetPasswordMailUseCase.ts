@@ -1,3 +1,6 @@
+
+import "reflect-metadata"
+import { inject, injectable } from "tsyringe";
 import { UsersRepository } from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
@@ -5,7 +8,7 @@ import { IDateProvider } from "@shared/container/providers/DateProvider/IDatePro
 import { IMailProvider } from "@shared/container/providers/MailProvider/IMailProvider";
 import { AppError } from "@shared/errors/AppError";
 import dayjs, { Dayjs } from "dayjs";
-import { inject, injectable } from "tsyringe";
+
 
 import {resolve} from "path";
 
@@ -26,7 +29,7 @@ class SendForgotPassWordMailUseCase {
         @inject("DayjsDateProvider")
         private dateProvider: IDateProvider,
 
-        @inject("EtherealMailProvider")
+        @inject("MailProvider")
         private mailProvider: IMailProvider,
 
     ){}

@@ -1,33 +1,29 @@
-
-import { IcreateSpecificationDTO } from "@modules/cars/repositories/ISpecificationsRepository";
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { UsersRepositoryInMemory } from "../../in-memory/UsersRepositoryInMemory";
+import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersTokensRepositoryInMemory";
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
-import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase"
-
-
-
-
+import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
-//let userTokensRepositoryInMemory: UsersTokensRepositoryInMemory;
-//let dateProvider: DayjsDateProvider;
+let userTokensRepositoryInMemory: UsersTokensRepositoryInMemory;
+let dateProvider: DayjsDateProvider;
 
 let createUserUseCase: CreateUserUseCase;
 
 describe("Authenticate User", () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
-    //userTokensRepositoryInMemory = new UsersTokensRepositoryInMemory();
-  //  dateProvider = new DayjsDateProvider();
+    userTokensRepositoryInMemory = new UsersTokensRepositoryInMemory();
+    dateProvider = new DayjsDateProvider();
 
     authenticateUserUseCase = new AuthenticateUserUseCase(
       usersRepositoryInMemory,
-      //userTokensRepositoryInMemory,
-      //dateProvider
+      userTokensRepositoryInMemory,
+      dateProvider
     );
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
   });
